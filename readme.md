@@ -16,4 +16,11 @@ To get a refresh token<br/>
 <code>
 curl trusted-app:secret@localhost:8080/oauth/token -d "grant_type=access_token&access_tokem=[ACCESS_TOKEN]" | jq
 </code>
+
+
+<br/>
+To access a protected resource<br/>
+<code>
+curl -H "Authorization: Bearer [ACCESS_TOKEN]" localhost:8080/api/hello
+</code>
 </div>
