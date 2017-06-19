@@ -85,7 +85,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         try {
-            converter.setSigningKey(keyProvider.getKey()); // FIXME use asymmetric key
+            converter.setSigningKey(keyProvider.getKey());
         } catch (URISyntaxException | KeyStoreException | NoSuchAlgorithmException | IOException | UnrecoverableKeyException | CertificateException e) {
             e.printStackTrace();
         }
