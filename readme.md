@@ -2,6 +2,9 @@
 <strong>TODO</strong><br/>
 <li>Remove users ad invalidate JWT tokens
 <li>Register Account only for trusted clients
+<li>Protect resources with differently
+<li>Write all the basic tests
+<li>Turn all debug options 'on'
 </p>
 
 <div>
@@ -27,6 +30,14 @@ curl -H "Authorization: Bearer [ACCESS_TOKEN]" localhost:8080/api/hello
 <p>
 <strong>Register new Account</strong><br/>
 <code>
-curl -X POST -H "Content-Type: application/json" -d '{"username":"tinmegali","password":"password","firstName":"First","lastName":"Last","email":"email@email.com"}' localhost:8080/api/register | jq
+curl -H "Authorization: Bearer $(curl register-app:secret@localhost:8080/oauth/token -d "grant_type=client_credentials&client_id=register-app" | jq --raw-output ."access_token")" localhost:8080/api/register -H "Content-Type: application/json" -d '{"username":"new-user","password":"password","firstName":"First","lastName":"Last","email":"email@email.com"}' | jq
 </code>
-</p
+</p>
+
+<div>
+<p>
+<strong>Curl sample commands</strong>
+<em>api/me</em>
+<code>curl -H "Authorization: Bearer $(curl trusted-app:secret@localhost:8080/oauth/token -d "grant_type=password&username=user&password=password" | jq --raw-output ."access_token")" localhost:8080/api/me | jq</code>
+</p>
+</div>

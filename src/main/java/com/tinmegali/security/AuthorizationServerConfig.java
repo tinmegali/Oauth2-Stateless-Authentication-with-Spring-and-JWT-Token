@@ -79,6 +79,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                     .resourceIds(resourceId)
                     .accessTokenValiditySeconds(accessTokenValiditySeconds)
                     .refreshTokenValiditySeconds(10000)
+                    .secret("secret")
+                    .and()
+                .withClient("register-app")
+                    .authorizedGrantTypes("client_credentials")
+                    .authorities("ROLE_REGISTER")
+                    .scopes("read")
+                    .resourceIds(resourceId)
                     .secret("secret");
     }
 

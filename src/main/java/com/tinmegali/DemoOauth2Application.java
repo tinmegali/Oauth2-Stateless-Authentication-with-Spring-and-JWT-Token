@@ -35,12 +35,13 @@ public class DemoOauth2Application {
 						username -> {
 							Account acct = new Account();
 							acct.setUsername(username);
-							acct.setPassword(passwordEncoder().encode("password"));
+							if ( username.equals("user")) acct.setPassword("password");
+							else acct.setPassword(passwordEncoder().encode("password"));
 							acct.setFirstName(username);
 							acct.setLastName("LastName");
-							acct.grantAuthority("USER");
+							acct.grantAuthority("ROLE_USER");
 							if ( username.equals("admin") )
-								acct.grantAuthority("ADMIN");
+								acct.grantAuthority("ROLE_ADMIN");
 							try {
 								accountService.register(acct);
 							} catch (AccountException e) {

@@ -17,7 +17,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@EnableGlobalMethodSecurity( prePostEnabled = true )
 @EnableWebSecurity( debug = true )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -40,34 +39,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder);
-//        super.configure(auth);
     }
-
-//    @Autowired
-//    public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
-//
-//        auth.authenticationProvider( authenticationProvider() )
-//                .userDetailsService(userDetailService())
-//                .passwordEncoder(passwordEncoder());
-//
-//        auth.userDetailsService(userDetailsService());
-//        auth.inMemoryAuthentication()
-//                .withUser("user").password("password").roles("USER")
-//                .and()
-//                .withUser("app_client").password("nopass").roles("USER")
-//                .and()
-//                .withUser("admin").password("password").roles("ADMIN");
-//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .anyRequest().authenticated()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .antMatchers("/*").authenticated()
-//                .anyRequest().authenticated()
-                .and().httpBasic()
-                .and().csrf().disable();
+                .and().httpBasic().and()
+                .csrf().disable();
     }
 
     @Override
