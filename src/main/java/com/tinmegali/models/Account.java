@@ -17,8 +17,6 @@ public class Account implements UserDetails {
     private Long id;
 
     private String username;
-
-    @JsonIgnore
     private String password;
 
     private String firstName;

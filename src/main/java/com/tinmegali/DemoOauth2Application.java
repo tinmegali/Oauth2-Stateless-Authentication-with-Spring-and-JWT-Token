@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.security.auth.login.AccountException;
@@ -20,8 +21,10 @@ public class DemoOauth2Application {
 		SpringApplication.run(DemoOauth2Application.class, args);
 	}
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder(){
+		return new BCryptPasswordEncoder();
+	}
 
 	@Bean
 	CommandLineRunner init(
@@ -32,7 +35,7 @@ public class DemoOauth2Application {
 						username -> {
 							Account acct = new Account();
 							acct.setUsername(username);
-							acct.setPassword(passwordEncoder.encode("password"));
+							acct.setPassword(passwordEncoder().encode("password"));
 							acct.setFirstName(username);
 							acct.setLastName("LastName");
 							acct.grantAuthority("USER");
