@@ -1,8 +1,6 @@
 <p>
 <strong>TODO</strong><br/>
 <li>Remove users ad invalidate JWT tokens
-<li>Register Account only for trusted clients
-<li>Protect resources with differently
 <li>Write all the basic tests
 <li>Turn all debug options 'on'
 </p>
