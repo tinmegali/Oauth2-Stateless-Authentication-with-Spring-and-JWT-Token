@@ -3,11 +3,13 @@ package com.tinmegali.services;
 import com.tinmegali.models.Account;
 import com.tinmegali.repositories.AccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.security.auth.login.AccountException;
 import java.util.Optional;
@@ -48,5 +50,13 @@ public class AccountService implements UserDetailsService {
         } else {
             throw new AccountException(String.format("Username[%s] already taken.", account.getUsername()));
         }
+    }
+
+    @Transactional // To successfully remove the date @Transactional annotation must be added
+    public void removeAuthenticatedAccount() throws UsernameNotFoundException {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Account acct = findAccountByUsername(username);
+        accountRepo.deleteAccountById(acct.getId());
+
     }
 }

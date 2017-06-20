@@ -7,9 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -31,11 +29,14 @@ import java.security.cert.CertificateException;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    @Value("${resource.id:spring-boot-application}")
+    @Value("${security.oauth2.resource.id}")
     private String resourceId;
 
-    @Value("${access_token.validity_period:3600}")
-    int accessTokenValiditySeconds = 3600;
+    @Value("${access_token.validity_period}")
+    private int accessTokenValiditySeconds;
+
+    @Value("${refresh_token.validity_period}")
+    private int refreshTokenValiditySeconds;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -70,7 +71,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                     .scopes("read", "write")
                     .resourceIds(resourceId)
                     .accessTokenValiditySeconds(accessTokenValiditySeconds)
-                    .refreshTokenValiditySeconds(10000)
+                    .refreshTokenValiditySeconds(refreshTokenValiditySeconds)
                     .and()
                 .withClient("trusted-app")
                     .authorizedGrantTypes("client_credentials", "password", "refresh_token")
@@ -78,7 +79,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                     .scopes("read", "write")
                     .resourceIds(resourceId)
                     .accessTokenValiditySeconds(accessTokenValiditySeconds)
-                    .refreshTokenValiditySeconds(10000)
+                    .refreshTokenValiditySeconds(refreshTokenValiditySeconds)
                     .secret("secret")
                     .and()
                 .withClient("register-app")
@@ -86,7 +87,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                     .authorities("ROLE_REGISTER")
                     .scopes("read")
                     .resourceIds(resourceId)
-                    .secret("secret");
+                    .secret("secret")
+                .and()
+                    .withClient("my-client-with-registered-redirect")
+                    .authorizedGrantTypes("authorization_code")
+                    .authorities("ROLE_CLIENT")
+                    .scopes("read", "trust")
+                    .resourceIds("oauth2-resource")
+                    .redirectUris("http://anywhere?key=value");
     }
 
     @Bean

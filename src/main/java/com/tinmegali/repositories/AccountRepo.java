@@ -14,6 +14,7 @@ public interface AccountRepo extends Repository<Account, Long> {
     Optional<Account> findById(Long id);
     Integer countByUsername(String username);
     Account save(Account account);
+    void deleteAccountById(Long id);
 
 
 

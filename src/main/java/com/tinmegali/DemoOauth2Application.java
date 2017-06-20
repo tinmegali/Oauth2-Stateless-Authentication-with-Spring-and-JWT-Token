@@ -1,17 +1,19 @@
 package com.tinmegali;
 
 import com.tinmegali.models.Account;
-import com.tinmegali.repositories.AccountRepo;
 import com.tinmegali.services.AccountService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.security.auth.login.AccountException;
+import javax.sql.DataSource;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -24,6 +26,15 @@ public class DemoOauth2Application {
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder(){
 		return new BCryptPasswordEncoder();
+	}
+
+	@Bean @Qualifier("mainDataSource")
+	public DataSource dataSource(){
+		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+		EmbeddedDatabase db = builder
+				.setType(EmbeddedDatabaseType.H2)
+				.build();
+		return db;
 	}
 
 	@Bean
