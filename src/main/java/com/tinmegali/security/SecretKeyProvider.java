@@ -24,14 +24,14 @@ public class SecretKeyProvider {
     private KeyPair getKeyPair() throws
             KeyStoreException, IOException,
             NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException {
-        FileInputStream is = new FileInputStream("keys.jks");
+        FileInputStream is = new FileInputStream("mykeys.jks");
 
         KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
-        keystore.load(is, "abracadabra".toCharArray());
+        keystore.load(is, "mypass".toCharArray());
 
-        String alias = "keys";
+        String alias = "mykeys";
 
-        Key key = keystore.getKey(alias, "abracadabra".toCharArray());
+        Key key = keystore.getKey(alias, "mypass".toCharArray());
         if (key instanceof PrivateKey) {
             // Get certificate of public key
             Certificate cert = keystore.getCertificate(alias);
