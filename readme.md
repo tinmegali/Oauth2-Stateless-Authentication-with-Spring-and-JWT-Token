@@ -10,12 +10,12 @@ This project uses <em>Spring Security</em> to authenticate and protect some Rest
 
 <h4>External references</h4>
 This project was inspired by all these references.
-* <a href="http://www.baeldung.com/spring-security-oauth-jwt">Using JWT with Spring Security OAuth</a>
-* <a href="https://sdqali.in/blog/2016/07/13/jwt-authentication-with-spring-web---part-5/">JWT authentication with Spring Web</a>
-* <a href="http://www.svlada.com/jwt-token-authentication-with-spring-boot/#jwt-authentication">JWT Authentication Tutorial: An example using Spring Boot</a>
-* <a href="http://sgdev-blog.blogspot.com.br/2016/04/spring-oauth2-with-jwt-sample.html">Spring Oauth2 with JWT Sample</a>
-* <a href="http://www.swisspush.org/security/2016/10/17/oauth2-in-depth-introduction-for-enterprises">OAuth2 in depth: A step-by-step introduction for enterprises</a>
-* <a href="https://github.com/gdong42/spring-auth-example">spring-auth-example</a>
+<li> <a href="http://www.baeldung.com/spring-security-oauth-jwt">Using JWT with Spring Security OAuth</a>
+<li> <a href="https://sdqali.in/blog/2016/07/13/jwt-authentication-with-spring-web---part-5/">JWT authentication with Spring Web</a>
+<li> <a href="http://www.svlada.com/jwt-token-authentication-with-spring-boot/#jwt-authentication">JWT Authentication Tutorial: An example using Spring Boot</a>
+<li> <a href="http://sgdev-blog.blogspot.com.br/2016/04/spring-oauth2-with-jwt-sample.html">Spring Oauth2 with JWT Sample</a>
+<li> <a href="http://www.swisspush.org/security/2016/10/17/oauth2-in-depth-introduction-for-enterprises">OAuth2 in depth: A step-by-step introduction for enterprises</a>
+<li> <a href="https://github.com/gdong42/spring-auth-example">spring-auth-example</a>
 
 <h4>To Build and Run</h4>
 Go to the cloned directory and run <code>mvn spring-boot:run</code> or build with your chosen IDE.
