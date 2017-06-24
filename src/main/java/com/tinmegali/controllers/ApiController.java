@@ -17,13 +17,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.security.auth.login.AccountException;
 
 @RestController
-@PreAuthorize("isAuthenticated()")
 public class ApiController {
 
     @Autowired
     private AccountService accountService;
 
-    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @GetMapping("/api/hello")
     public ResponseEntity<?> hello() {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -31,14 +29,12 @@ public class ApiController {
         return new ResponseEntity<Object>(msg, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @GetMapping(path = "/api/me", produces = "application/json" )
     public Account me() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return accountService.findAccountByUsername(username);
     }
 
-    @PreAuthorize("hasAuthority('ROLE_REGISTER')")
     @PostMapping(path = "/api/register", produces = "application/json")
     public ResponseEntity<?> register(@RequestBody Account account) {
         try {

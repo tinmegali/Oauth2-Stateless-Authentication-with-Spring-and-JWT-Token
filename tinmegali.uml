@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.tinmegali</OriginalElement>
+  <nodes>
+    <node x="167.0" y="244.0">com.tinmegali.models.RestResponse</node>
+    <node x="89.5" y="411.0">com.tinmegali.controllers.ApiController</node>
+    <node x="614.2057613168724" y="621.909465020576">com.tinmegali.DemoOauth2Application</node>
+    <node x="961.9794238683128" y="528.5884773662551">com.tinmegali.security.ResourceConfig</node>
+    <node x="-112.76954732510296" y="413.6213991769547">com.tinmegali.controllers.GeneralController</node>
+    <node x="338.0" y="0.0">com.tinmegali.repositories.AccountRepo</node>
+    <node x="1011.6625514403291" y="632.9300411522634">com.tinmegali.security.ResourceConfig.OAuthRequestedMatcher</node>
+    <node x="505.75" y="378.0">com.tinmegali.security.AuthorizationServerConfig</node>
+    <node x="959.9506172839506" y="382.1440329218108">com.tinmegali.security.SecurityConfig</node>
+    <node x="724.0" y="232.5">com.tinmegali.security.SecretKeyProvider</node>
+    <node x="322.0" y="211.0">com.tinmegali.services.AccountService</node>
+    <node x="0.0" y="606.0">com.tinmegali.models.Account</node>
+    <node x="0.0" y="244.0">com.tinmegali.exceptions.RestError</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.tinmegali.services.AccountService" target="com.tinmegali.repositories.AccountRepo">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.tinmegali.security.AuthorizationServerConfig" target="com.tinmegali.services.AccountService">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.tinmegali.controllers.ApiController" target="com.tinmegali.models.RestResponse">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.tinmegali.security.AuthorizationServerConfig" target="com.tinmegali.security.SecretKeyProvider">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.tinmegali.controllers.ApiController" target="com.tinmegali.exceptions.RestError">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.tinmegali.controllers.ApiController" target="com.tinmegali.services.AccountService">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.tinmegali.DemoOauth2Application" target="com.tinmegali.models.Account">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.tinmegali.security.ResourceConfig" target="com.tinmegali.security.ResourceConfig.OAuthRequestedMatcher">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6670992861778067" x="647.4999999999999" y="461.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
