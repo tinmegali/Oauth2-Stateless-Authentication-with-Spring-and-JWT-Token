@@ -8,6 +8,9 @@ This project uses <em>Spring Security</em> to authenticate and protect some Rest
   It also uses an <em>H2 embeded database</em> to authenticate the users.
 </p>
 
+<h4>Article on the project</h4>
+<a href="http://www.tinmegali.com/en/2017/06/25/oauth2-using-spring/">USING SPRING OAUTH2 TO SECURE REST</a>
+
 <h4>External references</h4>
 This project was inspired by all these references.
 <li> <a href="http://www.baeldung.com/spring-security-oauth-jwt">Using JWT with Spring Security OAuth</a>
