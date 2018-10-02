@@ -41,7 +41,7 @@ public class ResourceConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.requestMatcher(new OAuthRequestedMatcher())
-                .anonymous().disable()
+
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .antMatchers("/api/hello").access("hasAnyRole('USER')")
